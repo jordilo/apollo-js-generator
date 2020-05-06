@@ -1,6 +1,6 @@
 {
   "name": "@jordilo/apollo-js-generator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Apollo auto generator data layer for js projects",
   "main": "dist/bundle.js",
   "scripts": {
