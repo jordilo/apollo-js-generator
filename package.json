@@ -8,6 +8,9 @@
     "dev": "webpack-dev-server --inline --hot",
     "build": "webpack -p"
   },
+  "bin": {
+    "graphql-generate-angular": "./dist/bundle.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jordilo/apollo-js-generator.git"
