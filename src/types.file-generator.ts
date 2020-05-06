@@ -16,7 +16,7 @@ function createFileStream(type: TypeModel) {
 }
 function printFields(fields: TypeFieldModel[]) {
   return fields.reduce((acc, field) => {
-    return acc += `  
+    return acc += `
   ${printField(field)}`
   }, ``);
 }
