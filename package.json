@@ -2,14 +2,15 @@
   "name": "@jordilo/apollo-js-generator",
   "version": "0.0.1",
   "description": "Apollo auto generator data layer for js projects",
-  "main": "dist/main.ts",
+  "main": "dist/bundle.js",
   "scripts": {
     "test": "karma start",
     "dev": "webpack-dev-server --inline --hot",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "postinstall": "npm run build"
   },
   "bin": {
-    "graphql-generate-angular": "./dist/bundle.js"
+    "graphql-generate-angular": "./dist/index.js"
   },
   "repository": {
     "type": "git",

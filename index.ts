@@ -8,7 +8,7 @@ import { generateTypes } from './src/types';
 import * as apollogen from 'apollo-codegen'
 
 
-export const wrap = async (str: string) => {
+export const generateGrapQlSchema = async () => {
 
     const options = getConfiguration();
     const { apolloUrl, output, getFromUri, authotization } = options;
@@ -52,3 +52,5 @@ function generateAsync(options: ApolloConfig) {
     generateAngularModule(outputFolder, undefined, [{ name: serviceName, filename }]);
     return JSON.stringify(types);
 }
+
+generateGrapQlSchema()
