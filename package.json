@@ -1,0 +1,45 @@
+{
+  "name": "@jordilo/apollo-js-generator",
+  "version": "0.0.0",
+  "description": "Apollo auto generator data layer for js projects",
+  "main": "dist/main.ts",
+  "scripts": {
+    "test": "karma start",
+    "dev": "webpack-dev-server --inline --hot",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordilo/apollo-js-generator.git"
+  },
+  "keywords": [
+    "apollo",
+    "graphql",
+    "js"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordilo/apollo-js-generator/issues"
+  },
+  "homepage": "https://github.com/jordilo/apollo-js-generator#readme",
+  "devDependencies": {
+    "@types/jasmine": "^3.5.10",
+    "jasmine-core": "^3.5.0",
+    "karma": "^5.0.4",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^3.1.1",
+    "karma-webpack": "^4.0.2",
+    "ts-loader": "^7.0.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "@types/apollo-codegen": "^0.20.3",
+    "apollo": "^2.27.3",
+    "apollo-codegen": "^0.20.2",
+    "request-promise": "^4.2.5"
+  }
+}

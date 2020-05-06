@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../apollo-test"
+		},
+		{
+			"path": "../auth0-graphql-angular"
+		}
+	]
+}
