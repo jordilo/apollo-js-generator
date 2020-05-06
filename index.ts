@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Type } from './schema.definitions';
 import { generateQueryService } from './src/angular-query-service-generator';
 import { ApolloConfig } from './src/definitions.d';
@@ -34,8 +35,8 @@ export const generateGrapQlSchema = async () => {
             try {
 
                 generateAsync(options)
-            } catch (err) {
-                return err();
+            } catch (error) {
+                return err(error);
             }
             res();
         });

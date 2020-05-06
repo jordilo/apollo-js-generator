@@ -6,7 +6,7 @@
   "scripts": {
     "test": "karma start",
     "dev": "webpack-dev-server --inline --hot",
-    "build": "webpack -p"
+    "build": "tsc -p ."
   },
   "bin": {
     "graphql-generate-angular": "./dist/index.js"
