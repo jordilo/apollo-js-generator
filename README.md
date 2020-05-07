@@ -13,7 +13,7 @@ Before run, configure options as [below](#configuration) are explained
 ```
 
 ## Configuration 
-Create a file in root of your project named '.apollo-configuration
+Create a file in root of your project named **.apollo-configuration**
 ```json
   {
       "apolloUrl": "https://{YOURDOMAIN}/v1/graphql",
@@ -23,16 +23,16 @@ Create a file in root of your project named '.apollo-configuration
       "outputPath": "/src/graphql"
   }
 ```
-| name  | description  |
+| Name  | Description  |
 |---|---|
 | apolloUrl  | url of the graphql  |
 | authotization  | admin password access for graphql url (you can use GRAPHQL_AUTH environment variable instead) |
-|  get from uri (default false) | Flag to download schema from url or previous schema downloaded  |
+|  getFromUri (default false) | Flag to download schema from url or previous schema downloaded  |
 |  output |   path where schema will be donwload for future uses|
 |  outputPath |   path where graphql module will be generated|
 
 ## TODOS
-* Generate templates from template generato (p.e. mustache)
+* Generate templates from template generator (p.e. mustache)
 * Separate each interface in a unique file
 * Create Angular Store redux
 * Unit test
