@@ -26,6 +26,9 @@
     "url": "https://github.com/jordilo/apollo-js-generator/issues"
   },
   "homepage": "https://github.com/jordilo/apollo-js-generator#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "devDependencies": {
     "@types/jasmine": "^3.5.10",
     "jasmine-core": "^3.5.0",
