@@ -1,23 +1,35 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs = __importStar(require("fs"));
+exports.getSchema = exports.getConfiguration = void 0;
+const fs = __importStar(require("fs"));
 function getConfiguration() {
-    var apolloConfigBuffer = fs.readFileSync(process.cwd() + '/.apollo-configuration', { encoding: 'utf-8' });
+    const apolloConfigBuffer = fs.readFileSync(process.cwd() + '/.apollo-configuration', { encoding: 'utf-8' });
     return JSON.parse(apolloConfigBuffer);
 }
 exports.getConfiguration = getConfiguration;
-function getSchema(_a) {
-    var output = _a.output;
-    var d = fs.readFileSync(process.cwd() + output, { encoding: 'utf-8' });
-    var schema = JSON.parse(d);
+function getSchema({ output }) {
+    const d = fs.readFileSync(process.cwd() + output, { encoding: 'utf-8' });
+    const schema = JSON.parse(d);
     return schema.data.__schema;
 }
 exports.getSchema = getSchema;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL3NjaGVtYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFFQSxxQ0FBeUI7QUFJekIsU0FBZ0IsZ0JBQWdCO0lBRTlCLElBQU0sa0JBQWtCLEdBQUcsRUFBRSxDQUFDLFlBQVksQ0FBQyxPQUFPLENBQUMsR0FBRyxFQUFFLEdBQUcsd0JBQXdCLEVBQUUsRUFBRSxRQUFRLEVBQUUsT0FBTyxFQUFFLENBQUMsQ0FBQztJQUU1RyxPQUFPLElBQUksQ0FBQyxLQUFLLENBQUMsa0JBQWtCLENBQWlCLENBQUM7QUFDeEQsQ0FBQztBQUxELDRDQUtDO0FBQ0QsU0FBZ0IsU0FBUyxDQUFDLEVBQXdCO1FBQXRCLGtCQUFNO0lBRWhDLElBQU0sQ0FBQyxHQUFHLEVBQUUsQ0FBQyxZQUFZLENBQUMsT0FBTyxDQUFDLEdBQUcsRUFBRSxHQUFHLE1BQU0sRUFBRSxFQUFFLFFBQVEsRUFBRSxPQUFPLEVBQUUsQ0FBQyxDQUFDO0lBQ3pFLElBQU0sTUFBTSxHQUFHLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUF5QixDQUFDO0lBRXJELE9BQU8sTUFBTSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUE7QUFDN0IsQ0FBQztBQU5ELDhCQU1DIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL3NjaGVtYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBRUEsdUNBQXlCO0FBSXpCLFNBQWdCLGdCQUFnQjtJQUU5QixNQUFNLGtCQUFrQixHQUFHLEVBQUUsQ0FBQyxZQUFZLENBQUMsT0FBTyxDQUFDLEdBQUcsRUFBRSxHQUFHLHdCQUF3QixFQUFFLEVBQUUsUUFBUSxFQUFFLE9BQU8sRUFBRSxDQUFDLENBQUM7SUFFNUcsT0FBTyxJQUFJLENBQUMsS0FBSyxDQUFDLGtCQUFrQixDQUFpQixDQUFDO0FBQ3hELENBQUM7QUFMRCw0Q0FLQztBQUNELFNBQWdCLFNBQVMsQ0FBQyxFQUFFLE1BQU0sRUFBZ0I7SUFFaEQsTUFBTSxDQUFDLEdBQUcsRUFBRSxDQUFDLFlBQVksQ0FBQyxPQUFPLENBQUMsR0FBRyxFQUFFLEdBQUcsTUFBTSxFQUFFLEVBQUUsUUFBUSxFQUFFLE9BQU8sRUFBRSxDQUFDLENBQUM7SUFDekUsTUFBTSxNQUFNLEdBQUcsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQXlCLENBQUM7SUFFckQsT0FBTyxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQTtBQUM3QixDQUFDO0FBTkQsOEJBTUMifQ==

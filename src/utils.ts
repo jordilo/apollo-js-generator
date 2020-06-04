@@ -41,3 +41,12 @@ export function insertFile(path: string, file: string, data: string) {
   }
 
 }
+export interface FileNaming {
+  exportName: string;
+  fileName: string;
+}
+export function getExportNameAndFileName(name: string): FileNaming {
+  const exportName = convertToPascalCase(name);
+  const fileName = `${name}`;
+  return { exportName, fileName };
+}

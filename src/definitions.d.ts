@@ -16,5 +16,6 @@ export interface TypeFieldModel {
   description: string;
   name: string;
   isImportable: boolean;
+  isList?: boolean;
   field: string;
 }

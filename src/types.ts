@@ -1,6 +1,8 @@
+import { map } from 'rxjs/operators';
 import { TypeFieldModel } from './definitions.d';
 import { Schema, OfType, Field, Type } from '../schema.definitions';
 import { TypeModel } from './definitions';
+import _ from 'lodash';
 export function generateTypes(schema: Schema) {
 
   return schema.types
@@ -9,7 +11,12 @@ export function generateTypes(schema: Schema) {
 }
 
 
-export function convertScalarType(type: OfType): { field: string, isImportable: boolean } {
+export function generateEnums(schema: Schema) {
+  return schema.types
+    .filter((type) => type.kind === "ENUM");
+}
+
+export function convertScalarType(type: OfType): FieldTreated {
   try {
     switch (type.kind) {
       case "SCALAR":
@@ -27,10 +34,17 @@ export function convertScalarType(type: OfType): { field: string, isImportable: 
           default:
 
         }
+      case "INPUT_OBJECT": {
+        return { field: type.name, isImportable: true };
+      }
+      case "ENUM": {
+        return { field: type.name, isImportable: true };
+      }
       case "LIST":
         const { field, isImportable } = convertScalarType(type.ofType)
         return {
-          field: `${field}[]`,
+          field: `${field}`,
+          isList: true,
           isImportable
         };
       case "OBJECT":
@@ -66,4 +80,8 @@ export function convertType({ name, description, fields }: Type): TypeModel {
   } catch (err) {
     return undefined as any;
   }
+}
+
+export interface FieldTreated {
+  field: string; isImportable: boolean; isList?: boolean;
 }

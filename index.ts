@@ -3,11 +3,11 @@ import { Type } from './schema.definitions';
 import { generateQueryService } from './src/angular-query-service-generator';
 import { ApolloConfig } from './src/definitions.d';
 import { generateAngularModule } from './src/angular-module-generator';
-import { generateFiles } from './src/types.file-generator';
+import { generateInterfaceFiles, generateEnumFiles } from './src/types.file-generator';
 import { getConfiguration, getSchema } from './src/schema';
-import { generateTypes } from './src/types';
+import { generateTypes, generateEnums } from './src/types';
 import * as apollogen from 'apollo-codegen'
-
+import { generateModels } from './src/generate-models';
 
 export const generateGrapQlSchema = async () => {
 
@@ -45,12 +45,16 @@ export const generateGrapQlSchema = async () => {
 
 function generateAsync(options: ApolloConfig) {
     const schema = getSchema(options);
-    const types = generateTypes(schema);
     const outputFolder = process.cwd() + options.outputPath;
-    generateFiles(outputFolder, types);
-    const queryObj = schema.types.find((t) => t.name === schema.queryType.name) as Type;
-    const { name: serviceName, filename } = generateQueryService(queryObj, outputFolder);
-    generateAngularModule(outputFolder, undefined, [{ name: serviceName, filename }]);
+
+    const types = generateModels(schema, outputFolder)
+    // const types = generateTypes(schema);
+    // const enums = generateEnums(schema);
+    // generateInterfaceFiles(outputFolder, types);
+    // generateEnumFiles(outputFolder, enums);
+    // const queryObj = schema.types.find((t) => t.name === schema.queryType.name) as Type;
+    // const { name: serviceName, filename } = generateQueryService(queryObj, outputFolder);
+    // generateAngularModule(outputFolder, undefined, [{ name: serviceName, filename }]);
     return JSON.stringify(types);
 }
 
