@@ -52,9 +52,10 @@ function generateAsync(options: ApolloConfig) {
     // const enums = generateEnums(schema);
     // generateInterfaceFiles(outputFolder, types);
     // generateEnumFiles(outputFolder, enums);
-    // const queryObj = schema.types.find((t) => t.name === schema.queryType.name) as Type;
-    // const { name: serviceName, filename } = generateQueryService(queryObj, outputFolder);
-    // generateAngularModule(outputFolder, undefined, [{ name: serviceName, filename }]);
+    const queryObj = schema.types.find((t) => t.name === schema.queryType.name) as Type;
+    const muObj = schema.types.find((t) => t.name === schema.mutationType.name) as Type;
+    const { name: serviceName, filename } = generateQueryService(queryObj, outputFolder);
+    generateAngularModule(outputFolder, undefined, [{ name: serviceName, filename }]);
     return JSON.stringify(types);
 }
 

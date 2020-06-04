@@ -34,9 +34,7 @@ export function convertScalarType(type: OfType): FieldTreated {
           default:
 
         }
-      case "INPUT_OBJECT": {
-        return { field: type.name, isImportable: true };
-      }
+      case "INPUT_OBJECT":
       case "ENUM": {
         return { field: type.name, isImportable: true };
       }
@@ -49,6 +47,8 @@ export function convertScalarType(type: OfType): FieldTreated {
         };
       case "OBJECT":
         return { field: type.name, isImportable: true };
+      case "NON_NULL":
+        return { ...convertScalarType(type.ofType), isRequired: true };
       default:
         return convertScalarType(type.ofType);
     }
@@ -83,5 +83,5 @@ export function convertType({ name, description, fields }: Type): TypeModel {
 }
 
 export interface FieldTreated {
-  field: string; isImportable: boolean; isList?: boolean;
+  field: string; isImportable: boolean; isList?: boolean; isRequired?: boolean
 }

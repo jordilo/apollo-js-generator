@@ -1,4 +1,4 @@
-import { Type } from './../schema.definitions';
+import { Type, Field, Arg } from './../schema.definitions';
 import { convertPascalToKebabCase, insertFile, convertToPascalCase } from './utils';
 import { convertScalarType } from './types';
 export function generateQueryService(queries: Type, outputPath: string, serviceName: string = 'GraphQlDataService') {
@@ -45,15 +45,26 @@ ${printQueries(queries)}
 function printQueries(queries: Type) {
   return queries.fields.reduce((acc, current) => {
     const returnType = convertToPascalCase(convertScalarType(current.type).field);
-    return acc += `${printQuery(current.name, returnType)}`
+    return acc += `${printQuery(current.name, returnType, current)}`
   }, ``);
 }
-
-function printQuery(name: string, type: string) {
-  return `  public ${name}<T>(values: string, variables: any): Observable<models.${type}> {
+function printQuery(name: string, type: string, field: Field) {
+  const returnType = convertScalarType(field.type);
+  const returnTypeStr = convertToPascalCase(returnType.field) + (returnType.isList ? '[]' : '');
+  const argumentField = '{ ' + field.args.map((ar) => ar.name + '?: ' + determineParamType(ar)).join(', ') + ' }'
+  return `  public ${name}(values: string, variables?: ${argumentField}): Observable<models.${returnTypeStr}> {
     const query = this.simpleQuery('${name}', values);
-    return this.apollo.query<{ ${name}: models.${type}}>({ query })
+    return this.apollo.query<{ ${name}: models.${returnTypeStr}}>({ query })
       .pipe(map(({ data }) => data.${name}));
   }
 `;
+}
+
+function determineParamType(argument: Arg) {
+  const d = convertScalarType(argument.type);
+  if (d.isImportable) {
+    return 'models.' + convertToPascalCase(d.field);
+  } else {
+    return d.field;
+  }
 }
