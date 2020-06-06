@@ -17,27 +17,32 @@ export function generateModels(schema: Schema, outputPath: string): string {
       //   }, [] as Arg[]);
       //   console.log(++count, type.name, _arguments);
       // }
-      insertFile(outputPath + '/models/', fileNaming.fileName + '.d.ts', file), { flag: 'wx+' };
-      return fileNaming;
+      insertFile(outputPath + '/models/', fileNaming.fileName + '.d.ts', file[0]), { flag: 'wx+' };
+      return { ...fileNaming, exportQueryable: file[1] };
     })
     .reduce((acc, currentType) => {
-      return acc + `export {${currentType.exportName}} from './${currentType.fileName}';
-`
-    }, '')
+      let exportableMembers = `${currentType.exportName}`; 
+      if (currentType.exportQueryable){
+        exportableMembers = `${currentType.exportName}, ${currentType.exportName}Queryable`; 
+      }
+      return acc + `export { ${exportableMembers} } from './${currentType.fileName}';
+      `
+    }, '') + `
+export type Queryable<T> = (keyof T | { [P in keyof T]: Queryable<T[P]> })[];`
     ;
   insertFile(outputPath + '/models/', "index.d.ts", indexFileString), { flag: 'wx+' };
   return indexFileString;
 }
 
 
-function swithFileFromKind(type: Type, fileNaming: FileNaming) {
+function swithFileFromKind(type: Type, fileNaming: FileNaming): [string, boolean] {
   switch (type.kind) {
     case 'INPUT_OBJECT':
     case 'OBJECT':
-      return generateInterfaceFile(fileNaming.exportName, type);
+      return [generateInterfaceFile(fileNaming.exportName, type), true];
     // return `export interface ${fileNaming.exportName} {}`
     case 'ENUM':
-      return generateEnumFile(fileNaming.exportName, type);
+      return [generateEnumFile(fileNaming.exportName, type), false];
   }
-  return '';
+  return ['', false];
 }

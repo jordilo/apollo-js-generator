@@ -36,7 +36,7 @@ export function convertScalarType(type: OfType): FieldTreated {
         }
       case "INPUT_OBJECT":
       case "ENUM": {
-        return { field: type.name, isImportable: true };
+        return { field: type.name, isImportable: true, isRequired: false };
       }
       case "LIST":
         const { field, isImportable } = convertScalarType(type.ofType)

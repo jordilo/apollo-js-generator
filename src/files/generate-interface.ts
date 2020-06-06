@@ -25,21 +25,28 @@ export function generateInterfaceFile(name: string, type: Type): string {
  * ${type.description}
  */
 export interface ${name}  {
-${printFields(fields, Boolean(type.fields))}
-}`;
+${printFields(fields , Boolean(type.inputFields))}
+}
+export interface ${name}Queryable  {
+${printFields(fields, true)}
 }
 
-function printFields(fields: FieldTreatedExtended[], isField: boolean) {
+
+`;
+}
+
+function printFields(fields: FieldTreatedExtended[], plainObject: boolean = false) {
 
   return fields.reduce((acc, field) => {
     return acc += `
-  ${printField(field, isField)}`
+  ${printField(field, plainObject)}`
   }, '');
 }
-function printField(field: TypeFieldModel, isField: boolean) {
+function printField(field: TypeFieldModel, plainObject: boolean) {
   try {
     const required = field.isRequired ? '?' : '';
-    return `${field.name}${required}: ${field.isImportable ? convertToPascalCase(field.field) : field.field}${field.isList ? '[]' : ''};`
+    const listSuffix = field.isList && !plainObject ? '[]' : ''
+    return `${field.name}${required}: ${field.isImportable ? convertToPascalCase(field.field) : field.field}${listSuffix};`
   } catch (err) {
     return 'ERROR field';
   }

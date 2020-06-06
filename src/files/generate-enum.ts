@@ -5,5 +5,6 @@ export function generateEnumFile(name: string, type: Type): string {
   return `/**
  * ${type.description}
  */
-export type ${name}  = ${values};`;
+export type ${name}  = ${values};
+`;
 }
