@@ -65,9 +65,9 @@ function printQuery(name: string, type: string, field: Field) {
    * ${field.description}
    */
   public ${name}(
-    values: ${valueType}, 
+    values: ${valueType},
     variables?: ${argumentField},
-    enumerables: string[]
+    enumerables?: string[]
     ): Observable<models.${returnTypeStr}> {
     const generatedQuery = this.simpleQuery<${queryableObj}>('${name}', values , variables, enumerables );
     return this.apollo.query<{ ${name}: models.${returnTypeStr}}>(generatedQuery)
