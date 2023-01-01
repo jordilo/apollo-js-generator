@@ -36,10 +36,10 @@
     "karma": "^5.0.4",
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^3.1.1",
-    "karma-webpack": "^4.0.2",
-    "ts-loader": "^7.0.2",
+    "karma-webpack": "^5.0.0",
+    "ts-loader": "^9.4.2",
     "typescript": "^3.9.3",
-    "webpack": "^4.43.0",
+    "webpack": "^5.75.0",
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
@@ -49,6 +49,6 @@
     "gql-query-builder": "^3.3.0",
     "lodash": "^4.17.15",
     "request-promise": "^4.2.5",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^5.0.1"
   }
 }
